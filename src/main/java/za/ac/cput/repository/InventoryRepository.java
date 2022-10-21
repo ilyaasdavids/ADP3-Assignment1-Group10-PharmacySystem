@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Inventory;
 
 @Repository
-public interface IInventoryRepository extends JpaRepository<Inventory, Long> {
+public interface InventoryRepository extends JpaRepository<Inventory, String> {
 }

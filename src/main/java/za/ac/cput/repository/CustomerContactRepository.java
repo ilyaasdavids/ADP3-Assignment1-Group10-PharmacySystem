@@ -14,7 +14,5 @@ import za.ac.cput.domain.CustomerContact;
 import java.util.List;
 
 @Repository
-public interface ICustomerContactRepository extends JpaRepository<CustomerContact, Long> {
-    List<CustomerContact> findAllByCustomerId(String customerId);
-    List<CustomerContact> findAllByContactId(String contactId);
+public interface CustomerContactRepository extends JpaRepository<CustomerContact, String> {
 }

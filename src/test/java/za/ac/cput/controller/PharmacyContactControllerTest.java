@@ -1,11 +1,9 @@
-/*EmployeeContactControllerTest.java
- *Test for the EmployeeContactController
- * Author: Daniella Burgess 219446482
- * Date: 17 October 2022
- */
-
-package za.ac.cput.Controller;
-
+package za.ac.cput.controller;
+////
+/* PharmacyContactControllerTest.java
+ControllerTest for the PharmacyContact
+Author: Waseem Dollie (216040566)
+Date: 15 October 2022 */
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,55 +12,55 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import za.ac.cput.controller.EmployeeController;
-import za.ac.cput.domain.EmployeeContact;
-import za.ac.cput.factory.EmployeeContactFactory;
+import za.ac.cput.domain.PharmacyContact;
+import za.ac.cput.factory.PharmacyContactFactory;
 
 import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class EmployeeContactControllerTest {
+public class PharmacyContactControllerTest {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    private EmployeeController controller;
+    private PharmacyContactController controller;
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private EmployeeContact employeeContact;
+    private PharmacyContact pharmacyContact;
     private String baseUrl;
 
     @BeforeEach
     void setUp(){
-        this.employeeContact = EmployeeContactFactory.build("07", "0672664466", "2199446482@mycput.ac.za");
-        this.baseUrl = "http://localhost:" + this.port + "/PharmacySystem/employeeContact";
+        this.pharmacyContact = PharmacyContactFactory.build("123","0208348302","216040566@mycput.ac.za");
+        this.baseUrl = "http://localhost:" + this.port + "/PharmacySystem/pharmacyContact/";
     }
 
     @Order(1)
     @Test
-    void save(){
+    void save() {
         String url = baseUrl + "save";
         System.out.println(url);
-        ResponseEntity<EmployeeContact> response = this.restTemplate
-                .postForEntity(url, this.employeeContact, EmployeeContact.class);
+        ResponseEntity<PharmacyContact> response = this.restTemplate
+                .postForEntity(url, this.pharmacyContact, PharmacyContact.class);
         System.out.println(response);
         assertAll(
-                ()->assertEquals(HttpStatus.OK, response.getStatusCode()),
-                ()->assertNotNull(response.getBody())
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertNotNull(response.getBody())
         );
     }
 
     @Order(2)
     @Test
-    void read(){
-       String url = baseUrl + "read/" + this.employeeContact.getStaffId();
+    void read() {
+        String url = baseUrl + "read/" + this.pharmacyContact.getPharmId();
         System.out.println(url);
-        ResponseEntity<EmployeeContact>response = this.restTemplate.getForEntity(url, EmployeeContact.class);
+        ResponseEntity<PharmacyContact>response=
+                this.restTemplate.getForEntity(url,PharmacyContact.class);
         System.out.println(response);
         assertAll(
                 ()->assertEquals(HttpStatus.OK, response.getStatusCode()),
@@ -72,23 +70,24 @@ public class EmployeeContactControllerTest {
 
     @Order(4)
     @Test
-    void delete(){
-        String url = baseUrl + "delete/" + this.employeeContact.getStaffId();
+    void delete() {
+        String url = baseUrl + "delete/" + this.pharmacyContact.getPharmId();
         System.out.println(url);
-        this.restTemplate.delete(url, controller.delete(url));
+        this.restTemplate.delete(url,controller.delete(url));
     }
 
     @Order(3)
     @Test
-    void findAll(){
+    void findAll() {
+
         String url = baseUrl + "all";
         System.out.println(url);
-        ResponseEntity<EmployeeContact[]>response = this.restTemplate.getForEntity(url, EmployeeContact[].class);
+        ResponseEntity<PharmacyContact[]>response=
+                this.restTemplate.getForEntity(url,PharmacyContact[].class);
         System.out.println(Arrays.asList(response.getBody()));
         assertAll(
                 ()->assertEquals(HttpStatus.OK, response.getStatusCode()),
                 ()->assertTrue(response.getBody().length==1)
         );
     }
-
 }

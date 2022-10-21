@@ -9,5 +9,8 @@ package za.ac.cput.service;
 
 import za.ac.cput.domain.CustomerContact;
 
-public interface ICustomerContactService extends IService<CustomerContact, Long> {
+import java.util.List;
+
+public interface CustomerContactService extends IService<CustomerContact, String> {
+    List<CustomerContact> getAll();
 }
