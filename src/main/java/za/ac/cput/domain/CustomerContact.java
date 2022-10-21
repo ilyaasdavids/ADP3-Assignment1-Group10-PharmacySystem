@@ -6,58 +6,48 @@
  */
 
 package za.ac.cput.domain;
-
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.Embedded;
+import com.sun.istack.NotNull;
 
 @Entity
-@Table
-public class CustomerContact {
-    @Column@Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @Column
+public class CustomerContact implements Serializable {
+    @NotNull
+    @Id
     private String customerId;
-    @Column
-    private String contactId;
+    @Embedded
+    private Contact contact;
 
-    public long getId() {
-        return id;
-    }
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public String getContactId() {
-        return contactId;
-    }
+   public Contact getContact() {return contact;}
 
     public CustomerContact(){}
 
     public CustomerContact(Builder builder){
         this.customerId = builder.customerId;
-        this.contactId = builder.contactId;
-        if(builder.id > 0)
-            this.id = builder.id;
+        this.contact = builder.contact;
     }
 
-    public static class Builder{
-        private long id;
-        private String customerId, contactId;
+    public String getCustomerId(){return customerId;}
 
-        public Builder setCustomerId(String customerId){
+    public static class Builder{
+        private String customerId;
+        private Contact contact;
+
+        public CustomerContact.Builder setCustomerId(String customerId){
             this.customerId = customerId;
             return this;
         }
 
-        public Builder setContactId(String contactId){
-            this.contactId = contactId;
+        public CustomerContact.Builder setContact(Contact contact){
+            this.contact = contact;
             return this;
         }
 
-        public Builder copy(CustomerContact customerContact){
-            this.id = customerContact.id;
+        public CustomerContact.Builder copy(CustomerContact customerContact){
             this.customerId = customerContact.customerId;
-            this.contactId = customerContact.contactId;
+            this.contact = customerContact.contact;
             return this;
         }
 
@@ -69,9 +59,8 @@ public class CustomerContact {
     @Override
     public String toString() {
         return "CustomerContact{" +
-                "id='" + id + '\'' +
                 ", customerId='" + customerId + '\'' +
-                ", contactId='" + contactId + '\'' +
+                ", contactId='" + contact + '\'' +
                 '}';
     }
 }

@@ -18,8 +18,6 @@ public class Inventory implements Serializable {
     private String tableStockAmount;
     private String medicineStockAmount;
 
-    @Embedded
-    private CustomerContact customerContact;
 
     protected Inventory(){}
 
@@ -41,7 +39,6 @@ public class Inventory implements Serializable {
         return medicineStockAmount;
     }
 
-    public CustomerContact getCustomerContact(){return customerContact;}
 
     @Override
     public String toString() {
@@ -54,7 +51,6 @@ public class Inventory implements Serializable {
 
     public static class Builder{
         private String inventoryID, tableStockAmount, medicineStockAmount;
-        private CustomerContact customerContact;
 
         public Builder inventoryID(String inventoryID){
             this.inventoryID = inventoryID;
@@ -71,10 +67,6 @@ public class Inventory implements Serializable {
             return this;
         }
 
-        public Builder customerContact(CustomerContact customerContact){
-            this.customerContact= customerContact;
-            return this;
-        }
 
         public Inventory build(){
             return new Inventory(this);

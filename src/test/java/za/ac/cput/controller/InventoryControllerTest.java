@@ -1,10 +1,3 @@
-/**
- * Author: Siphosethu Feni
- * Student Number: 217237614
- *  *  Group: 10
- * CustomerContactControllerTest.java
- */
-
 package za.ac.cput.controller;
 
 import org.junit.jupiter.api.*;
@@ -14,32 +7,32 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import za.ac.cput.domain.CustomerContact;
-import za.ac.cput.factory.CustomerContactFactory;
+import za.ac.cput.domain.Inventory;
+import za.ac.cput.factory.InventoryFactory;
 
 import java.util.Arrays;
-import static org.junit.jupiter.api.Assertions.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CustomerContactControllerTest {
 
+public class InventoryControllerTest {
     @LocalServerPort
     private int port;
 
     @Autowired
-    private CustomerContactController controller;
+    private InventoryController controller;
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private CustomerContact customerContact;
+    private Inventory inventory;
     private String baseUrl;
 
     @BeforeEach
     void setUp(){
-        this.customerContact = CustomerContactFactory.createCustomerContact("01","0213552233", "Pharmacy@gmail.com");
-        this.baseUrl = "http://localhost:" + this.port + "/PharmacySystem/customerContact/";
+        this.inventory = InventoryFactory.createInventory("01","100","150");
+        this.baseUrl = "http://localhost:" + this.port + "/PharmacySystem/inventory/";
     }
 
     @Order(1)
@@ -47,8 +40,8 @@ public class CustomerContactControllerTest {
     void save() {
         String url = baseUrl + "save";
         System.out.println(url);
-        ResponseEntity<CustomerContact> response = this.restTemplate
-                .postForEntity(url, this.customerContact, CustomerContact.class);
+        ResponseEntity<Inventory> response = this.restTemplate
+                .postForEntity(url, this.inventory, Inventory.class);
         System.out.println(response);
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
@@ -59,10 +52,10 @@ public class CustomerContactControllerTest {
     @Order(2)
     @Test
     void read() {
-        String url = baseUrl + "read/" + this.customerContact.getCustomerId();
+        String url = baseUrl + "read/" + this.inventory.getInventoryID();
         System.out.println(url);
-        ResponseEntity<CustomerContact>response=
-                this.restTemplate.getForEntity(url,CustomerContact.class);
+        ResponseEntity<Inventory>response=
+                this.restTemplate.getForEntity(url,Inventory.class);
         System.out.println(response);
         assertAll(
                 ()->assertEquals(HttpStatus.OK, response.getStatusCode()),
@@ -73,7 +66,7 @@ public class CustomerContactControllerTest {
     @Order(4)
     @Test
     void delete() {
-        String url = baseUrl + "delete/" + this.customerContact.getCustomerId();
+        String url = baseUrl + "delete/" + this.inventory.getInventoryID();
         System.out.println(url);
         this.restTemplate.delete(url,controller.delete(url));
     }
@@ -84,8 +77,8 @@ public class CustomerContactControllerTest {
 
         String url = baseUrl + "all";
         System.out.println(url);
-        ResponseEntity<CustomerContact[]>response=
-                this.restTemplate.getForEntity(url,CustomerContact[].class);
+        ResponseEntity<Inventory[]>response=
+                this.restTemplate.getForEntity(url,Inventory[].class);
         System.out.println(Arrays.asList(response.getBody()));
         assertAll(
                 ()->assertEquals(HttpStatus.OK, response.getStatusCode()),

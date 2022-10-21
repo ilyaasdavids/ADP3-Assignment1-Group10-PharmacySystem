@@ -7,17 +7,22 @@
 
 package za.ac.cput.factory;
 
+import za.ac.cput.domain.Contact;
 import za.ac.cput.domain.CustomerContact;
 import za.ac.cput.util.StringHelper;
 
 public class CustomerContactFactory {
-    public static CustomerContact createCustomerContact(String customerId, String contactId){
+    public static CustomerContact createCustomerContact(String customerId, String contactNumber, String email){
 
-        if(StringHelper.isNullorEmpty(customerId) || StringHelper.isNullorEmpty(contactId))
+        if(StringHelper.isNullorEmpty(customerId))
             throw new IllegalArgumentException("Customer ID or Email is null or empty");
 
+        Contact contact = ContactFactory.build(contactNumber, email);
+        if (contact == null)
+            throw new IllegalArgumentException("Contact is null or empty");
+
         return new CustomerContact.Builder().setCustomerId(customerId)
-                .setContactId(contactId)
+                .setContact(contact)
                 .build();
     }
 }

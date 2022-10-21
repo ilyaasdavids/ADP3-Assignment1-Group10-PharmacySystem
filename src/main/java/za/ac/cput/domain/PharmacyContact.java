@@ -7,7 +7,6 @@ Date: 10 October 2022 */
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,13 +1,13 @@
 package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import za.ac.cput.domain.CustomerContact;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Inventory;
-import za.ac.cput.repository.CustomerContactRepository;
 import za.ac.cput.repository.InventoryRepository;
 
 import java.util.List;
 
+@Service
 public class InventoryServiceImpl implements InventoryService{
 
     private final InventoryRepository inventoryRepository;
