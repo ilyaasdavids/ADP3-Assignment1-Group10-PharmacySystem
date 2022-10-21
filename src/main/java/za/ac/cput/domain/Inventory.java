@@ -6,39 +6,42 @@
  */
 package za.ac.cput.domain;
 
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table
-public class Inventory {
-    @Column
+public class Inventory implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long inventoryID;
-    @Column
-    private int tableStockAmount, medicineStockAmount;
+    private String inventoryID;
+    private String tableStockAmount;
+    private String medicineStockAmount;
 
-    public Inventory(){}
+    @Embedded
+    private CustomerContact customerContact;
+
+    protected Inventory(){}
 
     private Inventory(Builder builder) {
-        if(builder.inventoryId > 0)
-            this.inventoryID = builder.inventoryId;
+        this.inventoryID = builder.inventoryID;
         this.tableStockAmount = builder.tableStockAmount;
         this.medicineStockAmount = builder.medicineStockAmount;
     }
 
-    public long getInventoryID() {
+    public String getInventoryID() {
         return inventoryID;
     }
 
-    public int getTableStockAmount() {
+    public String getTableStockAmount() {
         return tableStockAmount;
     }
 
-    public int getMedicineStockAmount() {
+    public String getMedicineStockAmount() {
         return medicineStockAmount;
     }
+
+    public CustomerContact getCustomerContact(){return customerContact;}
 
     @Override
     public String toString() {
@@ -49,30 +52,31 @@ public class Inventory {
                 '}';
     }
 
-    public static class Builder {
-        private long inventoryId;
-        private int tableStockAmount, medicineStockAmount;
+    public static class Builder{
+        private String inventoryID, tableStockAmount, medicineStockAmount;
+        private CustomerContact customerContact;
 
-        public Builder setTableStockAmount(int tableStockAmount) {
+        public Builder inventoryID(String inventoryID){
+            this.inventoryID = inventoryID;
+            return this;
+        }
+
+        public Builder tableStockAmount(String tableStockAmount){
             this.tableStockAmount = tableStockAmount;
             return this;
         }
 
-        public Builder setMedicineStockAmount(int medicineStockAmount) {
+        public Builder medicineStockAmount(String medicineStockAmount){
             this.medicineStockAmount = medicineStockAmount;
+            return this;
+        }
+
+        public Builder customerContact(CustomerContact customerContact){
+            this.customerContact= customerContact;
             return this;
         }
 
         public Inventory build(){
             return new Inventory(this);
         }
-
-        public Builder copy(Inventory I){
-            this.inventoryId = I.inventoryID;
-            this.tableStockAmount = I.tableStockAmount;
-            this.medicineStockAmount = I.medicineStockAmount;
-            return this;
-        }
-    }
-
-}
+    }}

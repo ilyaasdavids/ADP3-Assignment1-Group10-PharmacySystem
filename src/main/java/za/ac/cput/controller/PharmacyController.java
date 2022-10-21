@@ -40,8 +40,8 @@ public class PharmacyController {
         return ResponseEntity.ok(pharmacy);
     }
 
-    @GetMapping("delete/{}")
-    public ResponseEntity<Void>delete(@PathVariable String pharmID)
+    @GetMapping("delete/{pharmId}")
+    public ResponseEntity<Pharmacy>delete(@PathVariable String pharmID)
     {
         log.info("Read request:{}", pharmID);
         this.pharmacyService.delete(pharmID);

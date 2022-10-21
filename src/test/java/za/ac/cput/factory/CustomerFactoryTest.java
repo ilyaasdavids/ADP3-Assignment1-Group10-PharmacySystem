@@ -1,4 +1,5 @@
 package za.ac.cput.factory;
+import org.junit.jupiter.api.Assertions;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.domain.Name;
 import org.junit.jupiter.api.Test;

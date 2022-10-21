@@ -8,7 +8,11 @@
 package za.ac.cput.service;
 
 
+import za.ac.cput.domain.CustomerContact;
 import za.ac.cput.domain.Inventory;
 
-public interface IInventoryService extends IService<Inventory, Long> {
+import java.util.List;
+
+public interface InventoryService extends IService<Inventory, String> {
+    List<Inventory> getAll();
 }

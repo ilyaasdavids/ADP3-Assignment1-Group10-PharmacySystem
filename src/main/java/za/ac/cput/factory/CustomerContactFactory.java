@@ -8,12 +8,16 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.CustomerContact;
-import za.ac.cput.util.SiphosethuHelper;
+import za.ac.cput.util.StringHelper;
 
 public class CustomerContactFactory {
     public static CustomerContact createCustomerContact(String customerId, String contactId){
-        if(!SiphosethuHelper.isValid(customerId) || !SiphosethuHelper.isValid(contactId))
-            return null;
-        return new CustomerContact.Builder().setCustomerId(customerId).setContactId(contactId).build();
+
+        if(StringHelper.isNullorEmpty(customerId) || StringHelper.isNullorEmpty(contactId))
+            throw new IllegalArgumentException("Customer ID or Email is null or empty");
+
+        return new CustomerContact.Builder().setCustomerId(customerId)
+                .setContactId(contactId)
+                .build();
     }
 }

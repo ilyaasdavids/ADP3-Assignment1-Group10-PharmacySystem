@@ -8,6 +8,6 @@ spring:
       ddl-auto: create
     show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/PharmacySystem-Group10-db?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/PharmacySystem?createDatabaseIfNotExist=true
     username: root
-    password: Davi@2022
+    password:

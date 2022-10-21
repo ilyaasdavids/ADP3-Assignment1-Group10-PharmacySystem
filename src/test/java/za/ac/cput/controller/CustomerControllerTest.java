@@ -72,19 +72,19 @@ class CustomerControllerTest {
         );
     }
 
-    @Test
-    @Order(3)
-    void update(){
-        Customer updated = new Customer.Builder().copy(customer).customerId("CUS103").build();
-        String url= baseUrl +"/update";
-        System.out.println("URL: "+url);
-        System.out.println("Post data: "+updated);
-        ResponseEntity<Customer> response=restTemplate.postForEntity(url,updated,Customer.class);
-        assertNotNull(response.getBody());
-    }
+//    @Test
+//    @Order(3)
+//    void update(){
+//        Customer updated = new Customer.Builder().copy(customer).customerId("CUS103").build();
+//        String url= baseUrl +"/update";
+//        System.out.println("URL: "+url);
+//        System.out.println("Post data: "+updated);
+//        ResponseEntity<Customer> response=restTemplate.postForEntity(url,updated,Customer.class);
+//        assertNotNull(response.getBody());
+//    }
 
     @Test
-    @Order(5)
+    @Order(3)
     void delete() {
         String url= baseUrl +"/delete/"+ customer.getCustomerId();
         System.out.println("URL: "+url);
