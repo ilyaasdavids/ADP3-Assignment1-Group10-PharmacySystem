@@ -39,7 +39,7 @@ public class EmployeeContactControllerTest {
     @BeforeEach
     void setUp(){
         this.employeeContact = EmployeeContactFactory.build("07", "0672664466", "2199446482@mycput.ac.za");
-        this.baseUrl = "http://localhost:" + this.port + "/PharmacySystem/employeeContact";
+        this.baseUrl = "http://localhost:" + this.port + "/PharmacySystem/employeeContact/";
     }
 
     @Order(1)

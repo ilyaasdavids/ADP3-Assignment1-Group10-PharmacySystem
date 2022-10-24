@@ -38,11 +38,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
-    @GetMapping("delete/{}")
-    public ResponseEntity<Void>delete(@PathVariable String staffID)
+    @DeleteMapping("delete/{staffId}")
+    public ResponseEntity<Employee>delete(@PathVariable String staffId)
     {
-        log.info("Read request:{}", staffID);
-        this.employeeService.delete(staffID);
+        log.info("Read request:{}", staffId);
+        this.employeeService.delete(staffId);
         return ResponseEntity.noContent().build();
     }
 
