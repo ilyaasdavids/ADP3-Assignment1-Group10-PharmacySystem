@@ -1,5 +1,7 @@
 package za.ac.cput.service;
 import za.ac.cput.domain.Customer;
+import za.ac.cput.domain.Employee;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,8 +11,6 @@ import java.util.Optional;
  */
 public interface CustomerService extends IService<Customer, String> {
 
-    List<Customer> findAll();
-
-    void deleteById(String id);
+    List<Customer> getAll();
 
 }

@@ -1,92 +1,77 @@
 package za.ac.cput.domain;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Objects;
 
-/*Customer.java
-* Entity for the Customer
-* Thabiso Matsaba 220296006
-* 10 August 2022
-*/
 @Entity
 public class Customer implements Serializable {
-    @NotNull
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
     private String customerId;
+    private String gender;
+    @Embedded
     private Name name;
 
-    private Customer(Builder builder) {
+    protected Customer(){}
+
+    //builder constructor
+    private  Customer (Builder builder){
         this.customerId = builder.customerId;
+        this.gender = builder.gender;
         this.name = builder.name;
     }
 
-    protected Customer() {
+    //getters
+    public String getCustomerId(){
+        return customerId;
     }
-
-    public Name getName() {
+    public String getGender(){
+        return gender;
+    }
+    public Name getName(){
         return name;
     }
 
-    public void setName(Name name) {
-        this.name = name;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    private void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
     @Override
-    public String toString() {
+    public String toString(){
         return "Customer{" +
                 "customerId='" + customerId + '\'' +
-                ", name=" + name +
-                '}';
+                ", gender='" + gender + '\'' + '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer customer)) return false;
-        return getCustomerId().equals(customer.getCustomerId()) && getName().equals(customer.getName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getCustomerId(), getName());
-    }
-
+    //builder class
     public static class Builder {
-
         private String customerId;
+        private String gender;
         private Name name;
 
         public Builder customerId(String customerId) {
-            this.customerId = customerId;
+            this.customerId=customerId;
             return this;
         }
 
-        public Builder name(Name name) {
+        public Builder gender(String gender) {
+            this.gender=gender;
+            return this;
+        }
+
+        public Builder name(Name name){
             this.name = name;
             return this;
         }
 
-        public Builder copy(Customer Customer) {
-            this.customerId = Customer.customerId;
-            this.name = Customer.name;
+        public Builder copy(Customer customer)
+        {
+            this.customerId = customer.customerId;
+            this.gender = customer.gender;
+            this.name = customer.name;
             return this;
         }
-
-        public Customer build() {
-            return new Customer(this);
-        }
+        public Customer build(){ return new Customer(this);}
     }
+
+
 }
 
 
