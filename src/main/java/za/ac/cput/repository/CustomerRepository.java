@@ -12,6 +12,4 @@ import java.util.Optional;
  */
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String> {
-    List<Customer> findAll();
-    Optional<Customer> findById(String id);
 }

@@ -1,64 +1,46 @@
 package za.ac.cput.service;
-import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Customer;
-import za.ac.cput.factory.CustomerFactory;
 import za.ac.cput.repository.CustomerRepository;
-import za.ac.cput.service.CustomerService;
+
+
 import java.util.List;
-/* CustomerServiceImpl.java
- * @Author: Thabiso Matsaba (220296006)
- * Date: 11 August 2022
- */
+
 @Service
-@Transactional
-@AllArgsConstructor
-public class CustomerServiceImpl implements CustomerService {
+public class CustomerServiceImpl implements CustomerService{
 
     private final CustomerRepository customerRepository;
 
+    @Autowired
+    CustomerServiceImpl(CustomerRepository customerRepository){
+        this.customerRepository = customerRepository;
+    }
+
     @Override
     public Customer save(Customer customer) {
-
-        Customer validateCustomer;
-        validateCustomer = CustomerFactory.build(customer.getCustomerId(), customer.getName());
-
-        return customerRepository.save(validateCustomer);
+        return this.customerRepository.save(customer);
     }
 
     @Override
     public Customer read(String s) {
-
-        return customerRepository.findById(s).orElse(null);
+        return this.customerRepository.findById(s).orElse(null);
     }
 
-//    @Override
-//    public Customer update(Customer customer) {
-//        if (customerRepository.existsById(customer.getCustomerId())) {
-//            return customerRepository.save(customer);
-//        } else {
-//            return null;
-//        }
-//    }
     @Override
-    public boolean delete(String id) {
-        if (this.customerRepository.existsById(id)) {
-            this.customerRepository.deleteById(id);
+    public boolean delete(String s) {
+        if (this.customerRepository.existsById(s)) {
+            this.customerRepository.deleteById(s);
             return true;
         }
         return false;
-
     }
 
     @Override
-    public List<Customer> findAll() {
-        return customerRepository.findAll();
+    public List<Customer> getAll() {
+        return this.customerRepository.findAll();
     }
 
-    @Override
-    public void deleteById(String id) {
-       customerRepository.deleteById(id);
-    }
 }
 

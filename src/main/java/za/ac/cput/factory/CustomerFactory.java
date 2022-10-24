@@ -1,24 +1,27 @@
 package za.ac.cput.factory;
 import za.ac.cput.domain.Customer;
+import za.ac.cput.domain.Employee;
 import za.ac.cput.domain.Name;
-import org.hibernate.validator.internal.util.StringHelper;
+import za.ac.cput.util.Helper;
+import za.ac.cput.util.StringHelper;
 
-import java.util.UUID;
-/*CustomerFactory.java
- * Factory for the Customer
- * Thabiso Matsaba 220296006
- * 10 August 202222
- */
 public class CustomerFactory {
+    public static Customer createCustomer(String customerId, String gender, String firstName, String middleName, String lastName){
 
-    public static Customer build(String customerId, Name name){
+        //Checks if ID or email is empty
+        if(StringHelper.isNullorEmpty(customerId) || StringHelper.isNullorEmpty(gender))
+            throw new IllegalArgumentException("Customer ID or Email is null or empty");
 
-        if(StringHelper.isNullOrEmptyString(customerId))
-            throw new IllegalArgumentException();
 
-        if(name == null)
-            throw new IllegalArgumentException();
+        //checks if name is null or not
+        Name name = NameFactory.build(firstName, middleName, lastName);
+        if (name == null)
+            throw new IllegalArgumentException("Name is Null or empty");
 
-        return new  Customer.Builder().customerId(customerId).name(name).build();
+        return new Customer.Builder().customerId(customerId)
+                .gender(gender)
+                .name(name)
+                .build();
+
     }
 }

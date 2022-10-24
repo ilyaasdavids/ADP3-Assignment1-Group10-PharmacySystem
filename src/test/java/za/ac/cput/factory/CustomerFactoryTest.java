@@ -10,14 +10,14 @@ class CustomerFactoryTest {
 
     @Test
     public void testCustomerWithSuccess() {
-        Customer customer = CustomerFactory.build("CUS101", name);
+        Customer customer = CustomerFactory.createCustomer("220296006", "male", "Thabiso", "Patrick", "Matsaba");
         System.out.println(customer);
         Assertions.assertNotNull(customer);
     }
 
     @Test
     public void testCustomerWithNullId(){
-        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, ()-> CustomerFactory.build("", name));
+        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, ()-> CustomerFactory.createCustomer("220296006", "male", "Thabiso", "Patrick", "Matsaba"));
         String exceptionMessage = exception.getMessage();
         System.out.println(exceptionMessage);
         Assertions.assertSame("Customer is null", exceptionMessage);
