@@ -12,14 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import za.ac.cput.domain.Employee;
 import za.ac.cput.domain.EmployeeContact;
-import za.ac.cput.domain.Pharmacy;
-import za.ac.cput.domain.PharmacyContact;
 import za.ac.cput.factory.EmployeeContactFactory;
-import za.ac.cput.factory.EmployeeFactory;
-import za.ac.cput.factory.PharmacyContactFactory;
-import za.ac.cput.factory.PharmacyFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
