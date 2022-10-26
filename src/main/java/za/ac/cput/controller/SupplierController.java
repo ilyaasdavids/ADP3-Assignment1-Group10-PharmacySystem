@@ -1,4 +1,12 @@
 
+<<<<<<< Updated upstream
+=======
+/*SupplierController.java
+ * Controller class for Supplier
+ * Author: Ilyaas Davids (219466242)
+ * Date: 11 Oct 2022
+ */
+>>>>>>> Stashed changes
 package za.ac.cput.controller;
 
 import lombok.extern.slf4j.Slf4j;
@@ -6,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import za.ac.cput.domain.Medication;
 import za.ac.cput.domain.Supplier;
 import za.ac.cput.service.SupplierServiceImpl;
 
