@@ -6,68 +6,51 @@
 
 package za.ac.cput.service;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.core.annotation.Order;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.EmployeeContact;
 import za.ac.cput.factory.EmployeeContactFactory;
-import za.ac.cput.repository.EmployeeContactRepository;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.verify;
-
-@ExtendWith(MockitoExtension.class)
+import static org.junit.jupiter.api.Assertions.*;
+@SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class EmployeeContactServiceImplTest {
-    private EmployeeContactServiceImpl employeeContactService;
 
-    private static EmployeeContact employeeContact = EmployeeContactFactory.build("01", "0672664466","burgessdanilla@gmail.com");
+    @Autowired
+    EmployeeContactService employeeContactService;
 
+    private final EmployeeContact employeeContact = EmployeeContactFactory.build("01","0672664466","219446482@mycput.ac.za");
 
-    @Mock
-    EmployeeContactRepository employeeContactRepository;
-    @BeforeEach
-    void setUp(){
-        employeeContactService = new EmployeeContactServiceImpl(employeeContactRepository);
-    }
-
-    @Test
     @Order(1)
-    void save(){
-        employeeContactService.save(employeeContact);
-        ArgumentCaptor<EmployeeContact> argumentCaptor = ArgumentCaptor.forClass(EmployeeContact.class);
-        verify(employeeContactRepository).save(argumentCaptor.capture());
-        EmployeeContact capturedEmployeeContact = argumentCaptor.getValue();
-        assertThat(capturedEmployeeContact).isEqualTo(employeeContact);
-        System.out.println(employeeContact);
+    @Test
+    void save() {
+        EmployeeContact create1 = employeeContactService.save(this.employeeContact);
+        assertNotNull(create1);
+        System.out.println(create1);
     }
 
-    @Test
     @Order(2)
-    void read(){
-        employeeContactService.read("01");
-        verify(employeeContactRepository).findById(employeeContact.getStaffId());
-        assertNotNull(employeeContact.getStaffId());
-        System.out.println(employeeContact);
-    }
-
     @Test
+    void read() {
+        EmployeeContact read1 = employeeContactService.read(employeeContact.getStaffId());
+        assertEquals(read1.getStaffId(), employeeContact.getStaffId());
+        System.out.println(read1);
+    }
     @Order(4)
-    void delete(){
-        employeeContactService.delete("01");
-        verify(employeeContactRepository).existsById(employeeContact.getStaffId());
-        System.out.println("Id " + employeeContact.getStaffId() +" has been deleted successfully");
+    @Test
+    void delete() {
+        boolean success = employeeContactService.delete(employeeContact.getStaffId());
+        assertTrue(success);
+        System.out.println("Deleted: " + success);
     }
 
-    @Test
     @Order(3)
-    void getAll(){
-        employeeContactService.getAll();
-        verify(employeeContactRepository).findAll();
-        System.out.println(employeeContact);
+    @Test
+    void getAll() {
+        System.out.println(employeeContactService.getAll());
     }
 }

@@ -39,8 +39,8 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
-    @GetMapping("delete/{}")
-    public ResponseEntity<Void>delete(@PathVariable String customerId)
+    @DeleteMapping("delete/{customerId}")
+    public ResponseEntity<Customer>delete(@PathVariable String customerId)
     {
         log.info("Read request:{}", customerId);
         this.customerService.delete(customerId);

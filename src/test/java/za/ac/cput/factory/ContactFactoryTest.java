@@ -8,23 +8,40 @@ package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import za.ac.cput.factory.ContactFactory;
-import static org.junit.jupiter.api.Assertions.*;
+import za.ac.cput.domain.Contact;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ContactFactoryTest {
     @Test
     void buildWithSuccess()
     {
-        Exception exception= Assertions.assertThrows(IllegalArgumentException.class,()-> ContactFactory.build("001", "vanilla01@gmail.com"));
-        String exceptionMessage= exception.getMessage();
-        System.out.println(exceptionMessage);
-        Assertions.assertSame("This is a valid email", exceptionMessage);
+        Contact contact = ContactFactory.build("0672664466", "219446482@mycput.ac.za" );
+        Assertions.assertNotNull(contact);
+        System.out.println(contact);
+
     }
 
     @Test
-    void buildWithError()
+    void buildWithoutContactNumber()
     {
-        Exception exception= Assertions.assertThrows(IllegalArgumentException.class,()-> ContactFactory.build("", null));
+        Exception exception=assertThrows(IllegalArgumentException.class,()-> ContactFactory.build("", "vanilla@gmail.com"));
+        String exceptionMessage= exception.getMessage();
+        System.out.println(exceptionMessage);
+    }
+
+    @Test
+    void buildWithInvalidEmail()
+    {
+        Exception exception=assertThrows(IllegalArgumentException.class,()-> ContactFactory.build("0672664466", "vanilla#gmail,com"));
+        String exceptionMessage= exception.getMessage();
+        System.out.println(exceptionMessage);
+    }
+
+    @Test
+    void buildWithoutEmail()
+    {
+        Exception exception=assertThrows(IllegalArgumentException.class,()-> ContactFactory.build("0672664466", ""));
         String exceptionMessage= exception.getMessage();
         System.out.println(exceptionMessage);
     }

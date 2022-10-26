@@ -37,8 +37,8 @@ public class PrescriptionController {
         return ResponseEntity.ok(prescription);
     }
 
-    @GetMapping("delete/{}")
-    public ResponseEntity<Void> delete (@PathVariable String prescID){
+    @DeleteMapping("delete/{prescID}")
+    public ResponseEntity<Prescription> delete (@PathVariable String prescID){
         log.info("Read request:{}", prescID);
         this.prescriptionService.delete(prescID);
         return ResponseEntity.noContent().build();

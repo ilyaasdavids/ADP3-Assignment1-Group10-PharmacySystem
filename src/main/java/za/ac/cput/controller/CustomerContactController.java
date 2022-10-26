@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import za.ac.cput.domain.Customer;
 import za.ac.cput.domain.CustomerContact;
 import za.ac.cput.domain.PharmacyContact;
 import za.ac.cput.service.CustomerContactServiceImpl;
@@ -45,8 +46,8 @@ public class CustomerContactController {
         return ResponseEntity.ok(customerContact);
     }
 
-    @GetMapping("delete/{}")
-    public ResponseEntity<Void>delete(@PathVariable String customerId)
+    @DeleteMapping("delete/{customerId}")
+    public ResponseEntity<Customer>delete(@PathVariable String customerId)
     {
         log.info("Read request:{}", customerId);
         this.customerContactService.delete(customerId);

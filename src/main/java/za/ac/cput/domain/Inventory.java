@@ -15,7 +15,7 @@ public class Inventory implements Serializable {
 
     @Id
     private String inventoryID;
-    private String tableStockAmount;
+    private String tabletStockAmount;
     private String medicineStockAmount;
 
 
@@ -23,7 +23,7 @@ public class Inventory implements Serializable {
 
     private Inventory(Builder builder) {
         this.inventoryID = builder.inventoryID;
-        this.tableStockAmount = builder.tableStockAmount;
+        this.tabletStockAmount = builder.tabletStockAmount;
         this.medicineStockAmount = builder.medicineStockAmount;
     }
 
@@ -31,8 +31,8 @@ public class Inventory implements Serializable {
         return inventoryID;
     }
 
-    public String getTableStockAmount() {
-        return tableStockAmount;
+    public String getTtabletStockAmount() {
+        return tabletStockAmount;
     }
 
     public String getMedicineStockAmount() {
@@ -44,21 +44,21 @@ public class Inventory implements Serializable {
     public String toString() {
         return "Inventory{" +
                 "inventoryID=" + inventoryID +
-                ", tableStockAmount=" + tableStockAmount +
+                ", tabletStockAmount=" + tabletStockAmount +
                 ", medicineStockAmount=" + medicineStockAmount +
                 '}';
     }
 
     public static class Builder{
-        private String inventoryID, tableStockAmount, medicineStockAmount;
+        private String inventoryID, tabletStockAmount, medicineStockAmount;
 
         public Builder inventoryID(String inventoryID){
             this.inventoryID = inventoryID;
             return this;
         }
 
-        public Builder tableStockAmount(String tableStockAmount){
-            this.tableStockAmount = tableStockAmount;
+        public Builder tabletStockAmount(String tabletStockAmount){
+            this.tabletStockAmount = tabletStockAmount;
             return this;
         }
 
