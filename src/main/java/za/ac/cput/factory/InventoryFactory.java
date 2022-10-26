@@ -13,7 +13,7 @@ import za.ac.cput.util.StringHelper;
 public class InventoryFactory {
     public static Inventory createInventory(String inventoryID,String tabletStockAmount, String medicineStockAmount) {
         if(StringHelper.isNullorEmpty(inventoryID) ||StringHelper.isNullorEmpty(tabletStockAmount) || StringHelper.isNullorEmpty(medicineStockAmount))
-            throw new IllegalArgumentException("TableStockAmount or MedicineStockAmount is null or empty");
+            throw new IllegalArgumentException("TabletStockAmount or MedicineStockAmount is null or empty");
 
         return new Inventory.Builder().inventoryID(inventoryID)
                 .tabletStockAmount(tabletStockAmount)
