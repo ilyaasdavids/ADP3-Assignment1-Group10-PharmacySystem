@@ -44,6 +44,60 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/PharmacySystem/prescription/all").hasRole("USER")
                 .antMatchers(HttpMethod.DELETE, "/PharmacySystem/prescription/delete/").hasRole("ADMIN")
 
+                //CustomerContact
+                .antMatchers(HttpMethod.POST, "/PharmacySystem/customerContact/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/customerContact/read/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/customerContact/all").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/PharmacySystem/customerContact/delete/").hasRole("ADMIN")
+
+                //Customer
+                .antMatchers(HttpMethod.POST, "/PharmacySystem/customer/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/customer/read/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/customer/all").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/PharmacySystem/customer/delete/").hasRole("ADMIN")
+
+                //EmployeeContact
+                .antMatchers(HttpMethod.POST, "/PharmacySystem/employeeContact/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/employeeContact/read/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/employeeContact/all").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/PharmacySystem/employeeContact/delete/").hasRole("ADMIN")
+
+                //Inventory
+                .antMatchers(HttpMethod.POST, "/PharmacySystem/inventory/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/inventory/read/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/inventory/all").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/PharmacySystem/inventory/delete/").hasRole("ADMIN")
+
+                //Medication
+                .antMatchers(HttpMethod.POST, "/PharmacySystem/medication/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/medication/read/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/medication/all").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/PharmacySystem/medication/delete/").hasRole("ADMIN")
+
+                //PharmacyContact
+                .antMatchers(HttpMethod.POST, "/PharmacySystem/pharmacyContact/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/pharmacyContact/read/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/pharmacyContact/all").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/PharmacySystem/pharmacyContact/delete/").hasRole("ADMIN")
+
+                //Pharmacy
+                .antMatchers(HttpMethod.POST, "/PharmacySystem/pharmacy/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/pharmacy/read/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/pharmacy/all").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/PharmacySystem/pharmacy/delete/").hasRole("ADMIN")
+
+                //Supplier
+                .antMatchers(HttpMethod.POST, "/PharmacySystem/supplier/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/supplier/read/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/supplier/all").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/PharmacySystem/supplier/delete/").hasRole("ADMIN")
+
+                //SupplierContact
+                .antMatchers(HttpMethod.POST, "/PharmacySystem/supplierContact/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/supplierContact/read/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/PharmacySystem/supplierContact/all").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/PharmacySystem/supplierContact/delete/").hasRole("ADMIN")
+
                 .and().formLogin()
                 .disable()
                 .httpBasic();
