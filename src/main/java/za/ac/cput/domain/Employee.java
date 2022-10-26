@@ -41,10 +41,12 @@ public class Employee implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Employee{" +
                 "staffId='" + staffId + '\'' +
-                ", gender='" + gender + '\'' + '}';
+                ", gender='" + gender + '\'' +
+                ", name=" + name +
+                '}';
     }
 
     //builder class

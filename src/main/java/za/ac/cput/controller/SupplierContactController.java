@@ -56,7 +56,7 @@ public class SupplierContactController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id")String id){
+    public ResponseEntity<SupplierContact> delete(@PathVariable String id){
         supplierContactService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

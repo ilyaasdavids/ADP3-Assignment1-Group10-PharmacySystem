@@ -45,7 +45,7 @@ public class InventoryController {
         return ResponseEntity.ok(inventory);
     }
 
-    @GetMapping("delete/{inventoryID}")
+    @DeleteMapping("delete/{inventoryID}")
     public ResponseEntity<Inventory>delete(@PathVariable String inventoryID)
     {
         log.info("Read request:{}", inventoryID);

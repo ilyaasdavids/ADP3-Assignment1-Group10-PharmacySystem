@@ -44,7 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/PharmacySystem/prescription/all").hasRole("USER")
                 .antMatchers(HttpMethod.DELETE, "/PharmacySystem/prescription/delete/").hasRole("ADMIN")
 
-                .and().formLogin().disable()
+                .and().formLogin()
+                .disable()
                 .httpBasic();
     }
 

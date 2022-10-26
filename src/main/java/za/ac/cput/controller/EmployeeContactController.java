@@ -47,8 +47,8 @@ public class EmployeeContactController {
         return ResponseEntity.ok(save);
     }
 
-    @DeleteMapping("/delete/{}")
-    public ResponseEntity<Void>delete(@PathVariable String staffId) {
+    @DeleteMapping("/delete/{staffId}")
+    public ResponseEntity<EmployeeContact>delete(@PathVariable String staffId) {
         log.info("read request:{}", staffId);
         this.employeeContactService.delete(staffId);
         return ResponseEntity.noContent().build();

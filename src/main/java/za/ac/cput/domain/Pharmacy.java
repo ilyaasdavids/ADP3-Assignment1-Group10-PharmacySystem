@@ -23,8 +23,6 @@ public class Pharmacy implements Serializable {
     private String medicationId;
     private String inventoryId;
 
-    @Embedded
-    private PharmacyContact pharmacyContact;
 
     protected Pharmacy(){
 
@@ -35,7 +33,6 @@ public class Pharmacy implements Serializable {
         this.pharmName = builder.pharmName;
         this.medicationId = builder.medicationId;
         this.inventoryId = builder.inventoryId;
-        this.pharmacyContact = builder.pharmacyContact;
     }
 
     public String getPharmId() {return pharmId;}
@@ -46,7 +43,6 @@ public class Pharmacy implements Serializable {
 
     public String getInventoryId() {return inventoryId;}
 
-    public PharmacyContact getPharmacyContact() {return pharmacyContact;}
 
     @Override
     public String toString() {
@@ -55,7 +51,6 @@ public class Pharmacy implements Serializable {
                 ", pharmName='" + pharmName + '\'' +
                 ", medicationId='" + medicationId + '\'' +
                 ", inventoryId='" + inventoryId + '\'' +
-                ", pharmacyContact=" + pharmacyContact +
                 '}';
     }
 
@@ -65,12 +60,12 @@ public class Pharmacy implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pharmacy pharmacy = (Pharmacy) o;
-        return pharmId.equals(pharmacy.pharmId) && pharmName.equals(pharmacy.pharmName) && medicationId.equals(pharmacy.medicationId) && inventoryId.equals(pharmacy.inventoryId) && pharmacyContact.equals(pharmacy.pharmacyContact);
+        return pharmId.equals(pharmacy.pharmId) && pharmName.equals(pharmacy.pharmName) && medicationId.equals(pharmacy.medicationId) && inventoryId.equals(pharmacy.inventoryId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pharmId, pharmName, medicationId, inventoryId, pharmacyContact);
+        return Objects.hash(pharmId, pharmName, medicationId, inventoryId);
     }
 
     public static class Builder{
@@ -97,10 +92,6 @@ public class Pharmacy implements Serializable {
             return this;
         }
 
-        public Builder pharmacyContact(PharmacyContact pharmacyContact){
-            this.pharmacyContact = pharmacyContact;
-            return this;
-        }
 
         public Pharmacy build(){
             return new Pharmacy(this);
